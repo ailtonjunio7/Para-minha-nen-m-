@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Você 🤍</title>
+
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: #000;
+      color: #2b2b2b;
+      overflow: hidden;
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 24px;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ---------- Página 1 ---------- */
+    #page1 {
+      background: url("bg-carta.jpg") center/cover no-repeat;
+    }
+
+    .letter {
+      max-width: 720px;
+      margin: 60px auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      background: rgba(255,255,255,0.85);
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    /* ---------- Página 2 ---------- */
+    #page2 {
+      background: url("bg-cartas.jpg") center/cover no-repeat;
+      color: #fff;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 400px;
+      margin: 80px auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 14px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.4s, background 0.4s;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+    .card.open {
+      background: rgba(255,255,255,0.9);
+      color: #2b2b2b;
+      transform: scale(1.05);
+    }
+
+    /* ---------- Página 3 ---------- */
+    #page3 {
+      background: #f6f6f6;
+      color: #2b2b2b;
+    }
+
+    .final-img {
+      max-width: 260px;
+      margin: 80px auto 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* ---------- Botão ---------- */
+    .btn {
+      margin: 40px auto;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Página 1 -->
+  <section class="page active" id="page1">
+    <div class="letter">
+      <p>Eu pensei muito antes de escrever isso 🤍<br>
+      Não porque me faltassem palavras,<br>
+      mas porque você merece algo verdadeiro.</p><br>
+
+      <p>Amar você é perceber, todos os dias,<br>
+      o quanto a sua presença muda tudo ao meu redor ✨</p><br>
+
+      <p>Aos meus olhos, você é perfeita<br>
+      não porque não erra,<br>
+      mas porque é real, única e inteira.</p><br>
+
+      <p>Se um dia você esquecer o quanto é especial,<br>
+      eu quero ser o lugar onde você lembra 🌹</p>
+
+      <button class="btn" onclick="goTo(2)">Continuar</button>
+    </div>
+  </section>
+
+  <!-- Página 2 -->
+  <section class="page" id="page2">
+    <div class="cards" id="cards">
+      <div class="card">Você me faz sorrir sem perceber</div>
+      <div class="card">Seu jeito mora em mim</div>
+      <div class="card">Eu te escolheria de novo</div>
+      <div class="card">Você é calma no meu caos</div>
+      <div class="card">Seu sorriso é casa</div>
+      <div class="card">Eu amo quem você é</div>
+      <div class="card">Você é meu lugar seguro</div>
+      <div class="card">Nada em você é pouco</div>
+      <div class="card">Sempre foi você 🤍</div>
+    </div>
+
+    <button class="btn" id="btn2" style="display:none" onclick="goTo(3)">
+      Continuar
+    </button>
+  </section>
+
+  <!-- Página 3 -->
+  <section class="page" id="page3">
+    <img src="final.jpg" class="final-img" alt="Nós dois">
+    <p style="font-size:1.2rem;">
+      No meio de tanta coisa no mundo,<br>
+      eu escolheria você de novo 🤍<br><br>
+      <strong>Sempre.</strong>
+    </p>
+  </section>
+
+  <script>
+    function goTo(n) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + n).classList.add('active');
+    }
+
+    const cards = document.querySelectorAll('.card');
+    let opened = 0;
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (!card.classList.contains('open')) {
+          card.classList.add('open');
+          opened++;
+          if (opened === cards.length) {
+            document.getElementById('btn2').style.display = 'block';
+          }
+        } else {
+          card.classList.remove('open');
+          opened--;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
